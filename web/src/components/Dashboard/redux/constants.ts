@@ -1,0 +1,6 @@
+export const FETCH_TASKS = 'FETCH_TASKS';
+export const FETCH_TASKS_REJECTED = 'FETCH_TASKS_REJECTED';
+export const FETCH_TASKS_FULFILLED = 'FETCH_TASKS_FULFILLED';
+export const ADD_TASK = 'ADD_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
