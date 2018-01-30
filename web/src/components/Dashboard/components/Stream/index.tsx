@@ -5,20 +5,11 @@ import { Row } from 'antd/lib/grid'
 import Card from '../../components/Card'
 import style from './style'
 
-// Redux
-import { fetchTasks } from '../../redux/actions'
-import store from '../../../../redux/store'
-
 interface IDashboardProps {
 	tasks: RemoteData<string, Task[]>
 }
 
-
 export default class Dashboard extends React.Component<IDashboardProps> {
-
-	componentWillMount() {
-		store.dispatch(fetchTasks())
-	}
 
 	render() {
 		const { tasks } = this.props;
