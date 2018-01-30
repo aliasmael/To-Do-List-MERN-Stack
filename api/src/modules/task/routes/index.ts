@@ -13,7 +13,7 @@ router.get('/', (_: Request, res: Response) => {
 		.then((tasks: Task[]) => {
 			res.status(200).json(tasks)
 		}).catch((err: Error) => {
-			res.send(400).json(err)
+			res.status(400).json(err.message)
 		})
 });
 
@@ -27,10 +27,10 @@ router.post('/', (req: Request, res: Response) => {
 				.then((task: Task) => {
 					res.status(200).json(task)
 				}).catch((err: Error) => {
-					res.send(400).json(err.message)
+					res.status(400).json(err.message)
 				})
 		}).catch((err: Error) => {
-			res.send(400).json(err.message)
+			res.status(400).json(err.message)
 		})
 });
 
@@ -44,7 +44,7 @@ router.delete('/:id', (req: Request, res: Response) => {
 			else
 				res.sendStatus(404)
 		}).catch((err: Error) => {
-			res.status(400).json(err)
+			res.status(400).json(err.message)
 		})
 });
 
@@ -55,7 +55,7 @@ router.put('/:id/complete', (req: Request, res: Response) => {
 		.then((_: Task) => {
 			res.sendStatus(200)
 		}).catch((err: Error) => {
-			res.send(400).json(err)
+			res.status(400).json(err.message)
 		})
 });
 
@@ -65,8 +65,8 @@ router.put('/:id/reopen', (req: Request, res: Response) => {
 	service.reopen(req.params.id)
 		.then((_: Task) => {
 			res.sendStatus(200)
-		}).catch((err) => {
-			res.send(400).json(err)
+		}).catch((err: Error) => {
+			res.status(400).json(err.message)
 		})
 });
 
