@@ -15,6 +15,16 @@ class MockService implements IService {
   addTask(_title: string, _description: string): Promise<Task> {
     throw new Error("Method not implemented.");
   }
+
+  deleteTask(_id: string): Promise<string> {
+    throw new Error("Method not implemented.");
+  }
+  completeTask(_id: string): Promise<string> {
+    throw new Error("Method not implemented.");
+  }
+  reopenTask(_id: string): Promise<string> {
+    throw new Error("Method not implemented.");
+  }
 }
 
 const service: IService = new MockService

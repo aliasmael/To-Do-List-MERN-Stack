@@ -4,7 +4,10 @@ import {
   FETCH_TASKS,
   FETCH_TASKS_REJECTED,
   FETCH_TASKS_FULFILLED,
-  ADD_TASK
+  ADD_TASK,
+  DELETE_TASK,
+  COMPLETE_TASK,
+  REOPEN_TASK
 } from './constants';
 
 const initialState: IDashboardState = {
@@ -58,6 +61,62 @@ export default function reducer(state: IDashboardState = initialState, action: A
             data: [
               ...state.tasks.data,
               task
+            ]
+          }
+        }
+      }
+    }
+
+    case DELETE_TASK: {
+      if (state.tasks.kind == "Success") {
+        return {
+          ...state,
+          tasks: {
+            kind: "Success",
+            data: [
+              ...state.tasks.data.filter((task: Task) => task._id != action.payload)
+            ]
+          }
+        }
+      }
+    }
+
+    case COMPLETE_TASK: {
+      if (state.tasks.kind == "Success") {
+        return {
+          ...state,
+          tasks: {
+            kind: "Success",
+            data: [
+              ...state.tasks.data.map((task: Task) => {
+                if (task._id == action.payload) {
+                  task.status = "COMPLETED"
+                  return task
+                }
+                else 
+                  return task
+              })
+            ]
+          }
+        }
+      }
+    }
+
+    case REOPEN_TASK: {
+      if (state.tasks.kind == "Success") {
+        return {
+          ...state,
+          tasks: {
+            kind: "Success",
+            data: [
+              ...state.tasks.data.map((task: Task) => {
+                if (task._id == action.payload) {
+                  task.status = "NOTCOMPLETED"
+                  return task
+                }
+                else 
+                  return task
+              })
             ]
           }
         }

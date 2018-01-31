@@ -5,12 +5,28 @@ import { Row } from 'antd/lib/grid'
 import Card from '../../components/Card'
 import style from './style'
 
+// Redux
+import { deleteTask, completeTask, reopenTask } from '../../redux/actions'
+import store from '../../../../redux/store'
+
 interface IDashboardProps {
 	tasks: RemoteData<string, Task[]>
 }
 
 export default class Dashboard extends React.Component<IDashboardProps> {
 
+	deleteTask = (id: string) => {
+    store.dispatch(deleteTask(id))
+	}
+
+	completeTask = (id: string) => {
+    store.dispatch(completeTask(id))
+	}
+
+	reopenTask = (id: string) => {
+    store.dispatch(reopenTask(id))
+	}
+	
 	render() {
 		const { tasks } = this.props;
 
@@ -33,11 +49,14 @@ export default class Dashboard extends React.Component<IDashboardProps> {
 					tasks.data.length > 0 ?
 						<Row>
 							{
-								console.log(tasks)
-							}
-							{
 								tasks.data.map((task: Task) => (
-									<Card key={task._id} task={task} />
+									<Card 
+										key={task._id} 
+										task={task} 
+										onDelete={this.deleteTask}
+										onComplete={this.completeTask}
+										onReopen={this.reopenTask}
+										/>
 								))
 							}
 						</Row>

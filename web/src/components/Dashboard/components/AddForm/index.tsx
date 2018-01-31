@@ -9,7 +9,6 @@ export default class AddForm extends React.Component {
 
   submit = (newTask: any) => {
     store.dispatch(addTask(newTask.title, newTask.description))
-    console.log(newTask)
   }
   
   render() {

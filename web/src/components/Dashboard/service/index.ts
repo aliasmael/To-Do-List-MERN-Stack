@@ -36,6 +36,42 @@ class Service implements IService {
     })
   }
 
+  deleteTask(id: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      axios.delete(baseUrl + '/task/' + id)
+        .then((_) => {
+          resolve(id)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+
+  completeTask(id: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      axios.put(baseUrl + '/task/' + id + '/complete')
+        .then((_) => {
+          resolve(id)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+
+  reopenTask(id: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      axios.put(baseUrl + '/task/' + id + '/reopen')
+        .then((_) => {
+          resolve(id)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+
 }
 
 const service: IService = new Service
