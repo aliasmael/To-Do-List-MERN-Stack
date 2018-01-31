@@ -24,12 +24,15 @@ export function fetchTasks() {
 }
 
 export function addTask(title: string, description: string) {
-  return {
-    type: ADD_TASK,
-    payload: {
-      title,
-      description,
-    },
+
+  return function(dispatch: any) {
+    service.addTask(title, description)
+      .then((response: Task) => {
+        dispatch({type: ADD_TASK, payload: response})
+      })
+      .catch((err: Error) => {
+        dispatch({type: FETCH_TASKS_REJECTED, payload: err})
+      })
   }
 }
 

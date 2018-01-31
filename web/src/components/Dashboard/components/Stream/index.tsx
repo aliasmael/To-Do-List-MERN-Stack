@@ -33,6 +33,9 @@ export default class Dashboard extends React.Component<IDashboardProps> {
 					tasks.data.length > 0 ?
 						<Row>
 							{
+								console.log(tasks)
+							}
+							{
 								tasks.data.map((task: Task) => (
 									<Card key={task._id} task={task} />
 								))

@@ -11,6 +11,10 @@ class MockService implements IService {
       }, 1000)
     })
   }
+
+  addTask(_title: string, _description: string): Promise<Task> {
+    throw new Error("Method not implemented.");
+  }
 }
 
 const service: IService = new MockService

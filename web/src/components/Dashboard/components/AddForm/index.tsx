@@ -1,20 +1,18 @@
 import * as React from 'react'
-import { Button, Input } from 'antd'
+import AddTaskForm from './Forms/AddTaskForm'
+
+// Redux
+import { addTask } from '../../redux/actions'
+import store from '../../../../redux/store'
 
 export default class AddForm extends React.Component {
 
+  submit = (newTask: any) => {
+    store.dispatch(addTask(newTask.title, newTask.description))
+    console.log(newTask)
+  }
+  
   render() {
-    return (
-      <div>
-        <Input placeholder="Task title" />
-        <div style={{ margin: '24px 0' }} />
-        <Input.TextArea placeholder="Insert description" autosize={{ minRows: 2, maxRows: 6 }} />
-        <div style={{ margin: '24px 0' }} />
-
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Button type="primary" style={{backgroundColor: '#5bb85c'}}>Add</Button>
-        </div>
-      </div>
-    )
+    return <AddTaskForm onSubmit={this.submit} />
   }
 }
