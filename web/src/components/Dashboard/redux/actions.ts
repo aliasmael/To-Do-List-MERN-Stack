@@ -6,10 +6,15 @@ import {
   DELETE_TASK,
   EDIT_TASK,
   COMPLETE_TASK,
-  REOPEN_TASK
+  REOPEN_TASK,
+  ADD_TASK_REJECTED,
+  DELETE_TASK_REJECTED,
+  COMPLETE_TASK_REJECTED,
+  REOPEN_TASK_REJECTED
 } from './constants';
 import { Task } from '../models/Models'
 import service from '../service'
+import {reset} from 'redux-form'
 
 export function fetchTasks() {
   return function(dispatch: any) {
@@ -30,9 +35,10 @@ export function addTask(title: string, description: string) {
     service.addTask(title, description)
       .then((response: Task) => {
         dispatch({type: ADD_TASK, payload: response})
+        dispatch(reset('addTask'));
       })
       .catch((err: Error) => {
-        dispatch({type: FETCH_TASKS_REJECTED, payload: err})
+        dispatch({type: ADD_TASK_REJECTED, payload: err})
       })
   }
 }
@@ -55,7 +61,7 @@ export function deleteTask(id: string) {
         dispatch({type: DELETE_TASK, payload: id})
       })
       .catch((err: Error) => {
-        dispatch({type: FETCH_TASKS_REJECTED, payload: err})
+        dispatch({type: DELETE_TASK_REJECTED, payload: err})
       })
   }
 }
@@ -67,7 +73,7 @@ export function completeTask(id: string) {
         dispatch({type: COMPLETE_TASK, payload: id})
       })
       .catch((err: Error) => {
-        dispatch({type: FETCH_TASKS_REJECTED, payload: err})
+        dispatch({type: COMPLETE_TASK_REJECTED, payload: err})
       })
   }
 }
@@ -79,7 +85,7 @@ export function reopenTask(id: string) {
         dispatch({type: REOPEN_TASK, payload: id})
       })
       .catch((err: Error) => {
-        dispatch({type: FETCH_TASKS_REJECTED, payload: err})
+        dispatch({type: REOPEN_TASK_REJECTED, payload: err})
       })
   }
 }
