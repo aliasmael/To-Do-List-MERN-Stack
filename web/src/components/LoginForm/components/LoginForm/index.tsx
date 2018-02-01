@@ -1,80 +1,34 @@
 import * as React from 'react'
-import { ILoginForm } from '../../models/Models'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import style from './style'
-const FormItem = Form.Item
+import { reduxForm, InjectedFormProps } from 'redux-form'
+import { RaisedButton, TextField } from 'material-ui'
+import Field from 'redux-form/lib/Field'
 
-interface ILoginFormProps {
-	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
-	onChange: (e: React.FormEvent<HTMLInputElement>) => void,
-	form: ILoginForm
-}
+const renderTextField = (props: any) => (
+  <TextField
+    hintText={props.label}
+    floatingLabelText={props.label}
+    type={props.type}
+    {...props.input}
+  />
+)
 
-export default class LoginForm extends React.Component<ILoginFormProps> {
+const LoginForm = (props: InjectedFormProps) => (
+  <form>
+    <div>
+      <Field name="username" component={renderTextField} label="Username" />
+    </div>
 
-	render() {
-		const { onSubmit, onChange, form } = this.props
+    <div>
+      <Field name="password" component={renderTextField} label="password" type="password"/>
+    </div>
 
-		return (
-			<Form onSubmit={onSubmit} className="login-form" style={style.form}>
-				<FormItem
-					validateStatus={form.errors.username ? 'error' : 'success'}
-					required
-				>
-					<Input
-						prefix={
-							<Icon
-								type="user"
-								style={{ color: 'rgba(0,0,0,.25)' }}
-							/>
-						}
-						placeholder="Username"
-						name="username"
-						onChange={onChange}
-						value={form.username}
-						style={style.textInput}
-					/>
-				</FormItem>
-				<FormItem
-					validateStatus={form.errors.password ? 'error' : 'success'}
-					required
-				>
-					<Input
-						prefix={
-							<Icon
-								type="lock"
-								style={{ color: 'rgba(0,0,0,.25)' }}
-							/>
-						}
-						type="password"
-						placeholder="Password"
-						name="password"
-						onChange={onChange}
-						value={form.password}
-						style={style.textInput}
-					/>
-				</FormItem>
-				<FormItem>
-					<Checkbox>Remember me</Checkbox>
-					<a
-						className="login-form-forgot"
-						href=""
-						style={style.forgetPassword}
-					>
-						Forgot password
-					</a>
-					<Button
-						type="primary"
-						htmlType="submit"
-						className="login-form-button"
-						style={style.submitBtn}
-					>
-						Log in
-					</Button>
-					Or <a href="">register now!</a>
-				</FormItem>
-			</Form>
-		)
-	}
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <RaisedButton type="submit" label="Login" onClick={props.handleSubmit} primary />
+    </div>
+  </form>
+);
 
-}
+// Decorate with redux-form
+export default reduxForm({
+  form: 'loginForm'
+})(LoginForm)
