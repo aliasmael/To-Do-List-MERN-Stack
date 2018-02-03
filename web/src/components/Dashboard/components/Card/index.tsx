@@ -28,10 +28,10 @@ export default class TaskCard extends React.Component<ITaskCardProps> {
         <div style={{}}>
           {
             task.status == "NOTCOMPLETED"
-              ? <RaisedButton primary style={style.actionBtn} onClick={() => this.props.onComplete(task._id)}>Complete</RaisedButton>
-              : <RaisedButton primary style={style.actionBtn} onClick={() => this.props.onReopen(task._id)}>Reopen</RaisedButton>
+              ? <RaisedButton primary style={style.actionBtn} label="Complete" onClick={() => this.props.onComplete(task._id)} />
+              : <RaisedButton primary style={style.actionBtn} label="Reopen" onClick={() => this.props.onReopen(task._id)} />
           }
-          <RaisedButton secondary style={style.actionBtn} onClick={() => this.props.onDelete(task._id)}>Delete</RaisedButton>
+          <RaisedButton secondary style={style.actionBtn} label="Delete" onClick={() => this.props.onDelete(task._id)} />
         </div>
       </div>
     )

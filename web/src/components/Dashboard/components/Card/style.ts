@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 const style = {
   actionBtn: {
     marginRight: 5,
-    width: 90,
+    width: 110,
     color: '#FFF'
   } as CSSProperties
 }
