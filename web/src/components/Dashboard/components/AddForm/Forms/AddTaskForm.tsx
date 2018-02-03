@@ -15,6 +15,7 @@ const renderTextField = (props: any) => (
     floatingLabelText={props.label}
     multiLine
     {...props}
+    {...props.input}
   />
 )
 
