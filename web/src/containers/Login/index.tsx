@@ -1,6 +1,9 @@
 import * as React from 'react'
 import LoginForm from '../../components/LoginForm'
-import { Row, Col } from 'antd/lib/grid'
+import AppHeader from '../../components/AppHeader/index'
+import style from './style'
+
+// Redux
 import { connect } from 'react-redux'
 import { Store, User } from '../../models/Models'
 
@@ -33,11 +36,10 @@ class LoginPage extends React.Component<ILoginPageProps> {
 
 	render() {
 		return (
-			<Row>
-				<Col offset={10} span={4}>
-					<LoginForm submitFailed={this.props.error} error={this.props.errorMessage}/>
-				</Col>
-			</Row>
+			<div style={style.loginContainer}>
+				<AppHeader />
+				<LoginForm submitFailed={this.props.error} error={this.props.errorMessage} />
+			</div>
 		)
 	}
 
