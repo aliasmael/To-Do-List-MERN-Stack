@@ -21,7 +21,7 @@ export default class TaskCard extends React.Component<ITaskCardProps> {
           <div>
             <b>{task.title}</b>
           </div>
-          <div>
+          <div style={style.description}>
             {task.description}
           </div>
         </div>

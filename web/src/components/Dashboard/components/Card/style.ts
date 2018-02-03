@@ -5,6 +5,9 @@ const style = {
     marginRight: 5,
     width: 110,
     color: '#FFF'
+  } as CSSProperties,
+  description: {
+    color: '#9E9E9E'
   } as CSSProperties
 }
 
