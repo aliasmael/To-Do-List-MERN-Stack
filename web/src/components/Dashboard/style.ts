@@ -7,7 +7,8 @@ const style = {
   } as CSSProperties,
   divider: {
     width: "50%",
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 10
   } as CSSProperties,
   stream: {
     width: "50%",
