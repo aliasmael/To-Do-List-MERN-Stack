@@ -8,7 +8,6 @@
   "author": "Ali Ismael",
   "license": "ISC",
   "dependencies": {
-    "antd": "^3.1.0",
     "awesome-typescript-loader": "^3.4.1",
     "axios": "^0.17.0",
     "gulp": "^3.9.1",
@@ -21,7 +20,6 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.2.1",
-    "redux-form-antd": "0.0.15",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.4.2",
     "redux-thunk": "^2.2.0",
