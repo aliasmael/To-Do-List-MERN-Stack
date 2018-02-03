@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { RemoteData } from '../../models/RemoteData'
 import { Task } from './models/Models'
-import { Row, Col } from 'antd/lib/grid'
 import Stream from './components/Stream'
 import AddForm from './components/AddForm'
 import AppHeader from '../AppHeader'
+import Divider from 'material-ui/Divider'
 import style from './style'
 
 // Redux
@@ -25,14 +25,12 @@ export default class Dashboard extends React.Component<IDashboardProps> {
 	render() {
 		const { tasks } = this.props;
 		return (
-			<Row style={style.streamWrapper}>
-				<Col span={12}>
-					<AppHeader />
-					<AddForm />
-					<hr style={{margin: 25}} />					
-					<Stream tasks={tasks} />
-				</Col>
-			</Row>
+			<div style={{ display: 'flex', 'flexDirection': 'column', justifyContent: 'center' }}>
+				<AppHeader />
+				<AddForm style={style.addForm} />
+				<Divider style={style.divider} />
+				<Stream tasks={tasks} style={style.stream} />
+			</div>
 		)
 	}
 }

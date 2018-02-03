@@ -1,15 +1,17 @@
 import { CSSProperties } from "react";
 
 const style = {
-  loaderWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: 10
+  addForm: {
+    width: "50%",
+    alignSelf: 'center'
   } as CSSProperties,
-  streamWrapper: {
-    display: 'flex',
-    justifyContent: 'center',    
-    marginTop: 10
+  divider: {
+    width: "50%",
+    alignSelf: 'center'
+  } as CSSProperties,
+  stream: {
+    width: "50%",
+    alignSelf: 'center'
   } as CSSProperties
 }
 

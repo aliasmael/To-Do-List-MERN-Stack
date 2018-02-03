@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { RemoteData } from '../../../../models/RemoteData'
 import { Task } from '../../models/Models'
-import { Row } from 'antd/lib/grid'
+import { CSSProperties } from 'react'
 import Card from '../../components/Card'
 import style from './style'
 
@@ -10,23 +10,24 @@ import { deleteTask, completeTask, reopenTask } from '../../redux/actions'
 import store from '../../../../redux/store'
 
 interface IDashboardProps {
-	tasks: RemoteData<string, Task[]>
+	tasks: RemoteData<string, Task[]>,
+	style?: CSSProperties
 }
 
 export default class Dashboard extends React.Component<IDashboardProps> {
 
 	deleteTask = (id: string) => {
-    store.dispatch(deleteTask(id))
+		store.dispatch(deleteTask(id))
 	}
 
 	completeTask = (id: string) => {
-    store.dispatch(completeTask(id))
+		store.dispatch(completeTask(id))
 	}
 
 	reopenTask = (id: string) => {
-    store.dispatch(reopenTask(id))
+		store.dispatch(reopenTask(id))
 	}
-	
+
 	render() {
 		const { tasks } = this.props;
 
@@ -46,24 +47,22 @@ export default class Dashboard extends React.Component<IDashboardProps> {
 
 			case "Success":
 				return (
-					tasks.data.length > 0 ?
-						<Row>
-							{
+					<div style={this.props.style}>
+						{
+							tasks.data.length > 0 ?
 								tasks.data.map((task: Task) => (
-									<Card 
-										key={task._id} 
-										task={task} 
+									<Card
+										key={task._id}
+										task={task}
 										onDelete={this.deleteTask}
 										onComplete={this.completeTask}
 										onReopen={this.reopenTask}
-										/>
+									/>
 								))
-							}
-						</Row>
-						:
-						<Row>
-							No tasks added yet!
-						</Row>
+								:
+								"No tasks added yet"
+						}
+					</div>
 				)
 		}
 	}
