@@ -18,7 +18,8 @@ export interface IUserState {
 	user: User,
 	fetching: boolean,
 	fetched: boolean,
-	error: boolean
+	error: boolean,
+	errorMessage: string
 }
 
 export interface ILoginResponse {

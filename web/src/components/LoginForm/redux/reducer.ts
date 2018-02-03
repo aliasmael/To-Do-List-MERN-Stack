@@ -9,23 +9,23 @@ import { Action } from 'redux-actions'
 
 const authUser: User = {
   id: 'guid',
-	username: 'ali.ismael',
-	firstname: 'Ali',
-	lastname: 'Ismael',
+  username: 'ali.ismael',
+  firstname: 'Ali',
+  lastname: 'Ismael',
   title: 'Software Developer',
   profileImage: '',
-	isGuest: false,
-	company: ''
+  isGuest: false,
+  company: ''
 }
 
 const guestUser: User = {
   id: 'guid',
-	username: 'Guest',
-	firstname: 'Guest',
-	lastname: 'User',
+  username: 'Guest',
+  firstname: 'Guest',
+  lastname: 'User',
   title: '',
   profileImage: '',
-	isGuest: true,
+  isGuest: true,
   company: ''
 }
 
@@ -33,7 +33,8 @@ const initialState: IUserState = {
   user: guestUser,
   fetching: false,
   fetched: false,
-  error: false
+  error: false,
+  errorMessage: ''
 }
 
 export default function reducer(state: IUserState = initialState, action: Action<any>): IUserState {
@@ -47,8 +48,10 @@ export default function reducer(state: IUserState = initialState, action: Action
     }
     case USER_LOGIN_REJECTED: {
       return {
-        ...state, fetching: false,
-        error: action.payload
+        ...state,
+        fetching: false,
+        error: true,
+        errorMessage: action.payload
       }
     }
     case USER_LOGIN_FULFILLED: {

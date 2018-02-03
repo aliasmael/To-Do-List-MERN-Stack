@@ -6,6 +6,8 @@ import { Store, User } from '../../models/Models'
 
 interface ILoginPageProps {
 	user: User,
+	error: boolean,
+	errorMessage: string,
 	history?: any
 }
 
@@ -33,7 +35,7 @@ class LoginPage extends React.Component<ILoginPageProps> {
 		return (
 			<Row>
 				<Col offset={10} span={4}>
-					<LoginForm />
+					<LoginForm submitFailed={this.props.error} error={this.props.errorMessage}/>
 				</Col>
 			</Row>
 		)
@@ -43,7 +45,9 @@ class LoginPage extends React.Component<ILoginPageProps> {
 
 function select(state: Store): ILoginPageProps {
 	return {
-		user: state.user.user
+		user: state.user.user,
+		error: state.user.error,
+		errorMessage: state.user.errorMessage
 	};
 }
 export default connect(select)(LoginPage);

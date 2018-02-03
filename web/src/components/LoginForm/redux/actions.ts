@@ -1,5 +1,5 @@
 import { ILoginResponse } from '../models/Models'
-import service from '../service/Mock'
+import service from '../service'
 
 export function login(username: string, password: string) {
   return function (dispatch: (action: object) => void ) {
@@ -8,8 +8,8 @@ export function login(username: string, password: string) {
       .then((response: ILoginResponse) => {
         dispatch({ type: "USER_LOGIN_FULFILLED", payload: response })
       })
-      .catch((_: Error) => {
-        dispatch({ type: "USER_LOGIN_REJECTED", payload: 'Wrong username or password!' })
+      .catch((_err: Error) => {
+        dispatch({ type: "USER_LOGIN_REJECTED", payload: "Bad username or password" })
       })
   }
 }

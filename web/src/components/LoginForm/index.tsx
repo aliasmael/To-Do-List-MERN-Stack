@@ -5,7 +5,12 @@ import Form from './components/LoginForm'
 import store from '../../redux/store'
 import { login } from './redux/actions'
 
-export default class LoginForm extends React.Component {
+interface ILoginFormProps {
+	submitFailed: boolean,
+	error: string
+}
+
+export default class LoginForm extends React.Component<ILoginFormProps> {
 
 	// Handle login form submittion
 	login(loginData: any) {
@@ -15,9 +20,20 @@ export default class LoginForm extends React.Component {
 	// Render the component.
 	render() {
 		return (
-			<Form
-				onSubmit={this.login}
-			/>
+			<div>
+				{
+					this.props.submitFailed ?
+						<span style={{
+							display: 'flex',
+							justifyContent: 'center',
+							color: "#F44336"
+						}}>{this.props.error}</span>
+						: ''
+				}
+				<Form
+					onSubmit={this.login}
+				/>
+			</div>
 		)
 	}
 
