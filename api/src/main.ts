@@ -2,6 +2,7 @@ import config from './config'
 
 // Import modules routes
 import taskRouter from './modules/task/routes'
+import authRouter from './modules/auth/routes'
 import { Request, Response } from 'express'
 
 const express = require('express');
@@ -34,6 +35,9 @@ app.use(bodyParser.json())
 
 // use task routes under /api/task
 app.use('/api/task', taskRouter);
+
+// use auth routes under /api/auth
+app.use('/api/auth', authRouter);
 
 // Handle error routes
 app.use(function (_: Request, res: Response) {
