@@ -1,32 +1,35 @@
 import * as React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { Button } from 'antd'
-
-const { TextField } = require('redux-form-antd')
+import { reduxForm, InjectedFormProps } from 'redux-form'
+import { RaisedButton, TextField } from 'material-ui'
+import Field from 'redux-form/lib/Field'
+import style from './style'
 
 export interface IAddTask {
   title: string,
   description: string
 }
 
-interface IProps {
-  handleSubmit: any
-}
+const renderTextField = (props: any) => (
+  <TextField
+    hintText={props.label}
+    floatingLabelText={props.label}
+    type={props.type}
+    {...props.input}
+  />
+)
 
-let AddTaskForm = (props: IProps) => {
-  const { handleSubmit } = props
+let AddTaskForm = (props: InjectedFormProps) => {
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={props.handleSubmit} style={style.form}>
       <div>
-        <label htmlFor="title">Task title</label>
-        <Field name="title" component={TextField} />
+        <Field name='title' label="Task title" component={renderTextField} />
       </div>
       <div>
-        <label htmlFor="description">Description</label>
-        <Field name="description" component={TextField} />
+        <Field name='description' label="Description" component={renderTextField} />
       </div>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Button type="primary" htmlType="submit" style={{backgroundColor: '#5bb85c'}}>Add</Button>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <RaisedButton type="submit" label="Add" primary />
       </div>
     </form>
   )
