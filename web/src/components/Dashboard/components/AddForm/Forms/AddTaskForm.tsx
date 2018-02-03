@@ -13,8 +13,8 @@ const renderTextField = (props: any) => (
   <TextField
     hintText={props.label}
     floatingLabelText={props.label}
-    type={props.type}
-    {...props.input}
+    multiLine
+    {...props}
   />
 )
 
@@ -23,13 +23,13 @@ let AddTaskForm = (props: InjectedFormProps) => {
   return (
     <form onSubmit={props.handleSubmit} style={style.form}>
       <div>
-        <Field name='title' label="Task title" component={renderTextField} />
+        <Field name='title' label="Task title" component={renderTextField} style={style.field} />
       </div>
       <div>
-        <Field name='description' label="Description" component={renderTextField} />
+        <Field name='description' label="Description" component={renderTextField} style={style.field} rows={4} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <RaisedButton type="submit" label="Add" primary />
+        <RaisedButton type="submit" label="Add" labelColor="#FFF" backgroundColor="#4CAF50" />
       </div>
     </form>
   )
