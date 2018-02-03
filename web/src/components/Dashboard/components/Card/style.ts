@@ -8,6 +8,12 @@ const style = {
   } as CSSProperties,
   description: {
     color: '#9E9E9E'
+  } as CSSProperties,
+  actionBtnsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginLeft: 10
   } as CSSProperties
 }
 

@@ -25,7 +25,7 @@ export default class TaskCard extends React.Component<ITaskCardProps> {
             {task.description}
           </div>
         </div>
-        <div style={{}}>
+        <div style={style.actionBtnsContainer}>
           {
             task.status == "NOTCOMPLETED"
               ? <RaisedButton primary style={style.actionBtn} label="Complete" onClick={() => this.props.onComplete(task._id)} />
